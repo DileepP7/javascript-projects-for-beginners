@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!--<script type="text/javascript">
+function demo(){
+var name=document.form1.name.value;
+var age=document.form1.age.value;
+var address=document.form1.address.value;
+
+if(name="")
+alert("name field must be filled");
+
+if(age="" || age!=parseInt(age))
+alert("Age should be number and not be empty");
+
+if(Address="")
+alert("Address field must be filled");
+} 
+</script>-->
+</head>
+<body>
+<div id="main-wrapper">
+  <div id="header-wrapper">
+    <h2>Employee Login Form</h2>
+  </div>
+  <div id="body-wrapper">
+    <div id="error"></div>
+    <div id="form-wrapper">
+      <form name="form1" action="" method="" onsubmit="return validate()">
+        <table cellpadding="5px" cellspacing="5px">
+          <tr>
+            <td>*Name:</td>
+            <td><input type="text" name="ename"/>
+              <div id="nameerror"></div></td>
+          </tr>
+          <tr>
+            <td>*Address:</td>
+            <td><input type="text" name="address"/>
+              <div id="addresserror"></div></td>
+          </tr>
+          <tr>
+            <td>*Age:</td>
+            <td><input type="text" name="age"/>
+              <div id="ageerror"></div></td>
+          </tr>
+          <tr>
+            <td>*Email:</td>
+            <td><input type="text" name="email"/>
+              <div id="emailerror"></div></td>
+          </tr>
+          <tr>
+            <td><input type="submit" value="submit"/></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+  <div id="footer-wrapper">
+    <p id="footer"> Copyright &copy; 2014 Leapfrog Technology Inc. | All Rights Reserved.<br />
+      Jagadamba Press Building, Hattiban; Lalitpur <br/>
+      <a href="#">www.lftechnology.com</a> </p>
+  </div>
+</div>
+<script type="text/javascript">
+var hasFocus = false;
+
+ function checkName(form1)
+{
+  var b=document.getElementById('nameerror');
+  var nam = document.form1.ename.value;
+  var error=false;
+  b.innerHTML='';
+  if (nam == '') {
+   error='Error: Username cannot be blank!';
+  }
+  else if (nam.length < 4) 
+{
+    error="UserName should be atleast 4 characters long";
+  }
+  if (error)
+{
+   if (hasFocus == false) {
+     document.form1.ename.focus();
+     hasFocus = true;
+   } 
+   b.innerHTML=error;
+   return false;
+  }
+  return true;
+  }
+  
+  function checkAddress(form1)
+{
+  var b=document.getElementById('addresserror');
+  var addr = document.form1.address.value;
+  var error=false;
+  b.innerHTML='';
+  if (addr == '') {
+   error='Error: Address cannot be blank!';
+  }
+  else if (addr.length < 4) 
+{
+    error="UserName should be atleast 4 characters long";
+  }
+  if (error)
+{
+   if (hasFocus == false) {
+     document.form1.address.focus();
+     hasFocus = true;
+   } 
+   b.innerHTML=error;
+   return false;
+  }
+  return true;
+  }
+  
+ 
+ 
+ 
+ function validAge(form1)              /* age validation */
+{          
+ var b=document.getElementById('ageerror');
+ var valid = '0123456789';
+ var age1 = document.form1.age.value;
+ var error=false;
+ var i=0;
+ var temp;
+ b.innerHTML='';
+ if (age1 == '')
+ {
+  error='Please enter your age';
+ }
+ else if (!age1.length > 16 || age1.length < 60)
+ {
+  error='Age should be between 16 ans 60! Please try again.';
+ }
+ else 
+ {
+  for (i=0; i < age1.length; i++)
+ {
+   temp = '' + age.substring(i, i + 1);
+   if (valid.indexOf(temp) == -1)
+    {
+    error='Invalid characters in your age. Please try again.';
+    }
+  }
+ }
+ if (error)
+ {
+   if (!hasFocus) {
+     document.form1.age.focus();
+     hasFocus = true;
+   } 
+  b.innerHTML=error;
+  return false;
+ }
+ return true;
+}
+
+
+
+
+function checkEmail(form1)          /* for email validation */
+{
+ var b=document.getElementById('emailerror');
+ b.innerHTML='';
+ var error = false;
+  if (form1.email.value.length == 0) {
+    error = 'Please enter email.';
+  } else if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form1.email.value))
+ {
+  return true;
+ } else {
+   error = 'Invalid E-mail Address! Please re-enter.';
+ }
+ if (error) {
+   b.innerHTML=error;
+   if (!hasFocus) {
+     document.form1.email.focus();
+     hasFocus = true;
+   } 
+   return false;
+ }
+
+ return true;
+}
+
+
+function validate() 
+ {
+  hasFocus = false;
+ var form1 = document.forms['form1'];
+ var ary=[checkName,checkAddress,validAge,checkEmail];
+ var rtn=true;
+ var i=0;
+ for (var i=0;i<ary.length;i++)
+{
+  if (!ary[i](form1))
+  {
+    rtn=false;
+  }
+ }
+ return rtn;
+}
+/*function abc(){
+var ename=document.form1.ename.value;
+var address=document.form1.address.value;
+var age=document.form1.age.value;
+var email=document.form1.email.value;
+
+var a=document.getElementById("error");
+a.innerHTML="Error message here";
+*/
+
+  
+  
+
+
+/*if(age="" || age!=parseInt(age))
+alert("Age should be number and not be empty");
+
+if(Address="")
+alert("Address field must be filled");
+} 
+if(ename=""){
+document.getElementById("nameerror").style.display="";
+return false;
+}
+return true;
+} */
+
+
+/*var b=document.getElementById("btn1");
+b.onclick=checkName;
+b.style.color="red";
+b.style.marginLeft="20px";
+b.style.border="1px solid blue";*/
+
+
+
+//b=document.getElementById("footer-wrapper");
+//b.innerHTML= "something here";
+
+</script>
+</body>
+</html>
